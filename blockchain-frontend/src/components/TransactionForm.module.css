@@ -1,0 +1,46 @@
+.formHeader {
+  text-align: center;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quickFillSection {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+}
+
+.quickFillButtons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btnSm {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .quickFillButtons {
+    flex-direction: column;
+  }
+
+  .btnSm {
+    width: 100%;
+  }
+} 

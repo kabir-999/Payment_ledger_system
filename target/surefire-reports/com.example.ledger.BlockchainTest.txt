@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.ledger.BlockchainTest
+-------------------------------------------------------------------------------
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.427 s -- in com.example.ledger.BlockchainTest

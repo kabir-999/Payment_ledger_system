@@ -1,0 +1,209 @@
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.searchSection {
+  margin-bottom: 2rem;
+}
+
+.searchForm {
+  margin-bottom: 1rem;
+}
+
+.searchInput {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end;
+}
+
+.searchInput input {
+  flex: 1;
+}
+
+.searchInput button {
+  flex-shrink: 0;
+}
+
+.searchResult {
+  margin-top: 1rem;
+}
+
+.balanceCard {
+  background: var(--gradient-success);
+  color: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.balanceInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.balanceAddress {
+  font-size: 1.125rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.balanceAmount {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.summarySection {
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.summaryCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius);
+}
+
+.summaryValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.summaryLabel {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.balancesSection {
+  margin-bottom: 1rem;
+}
+
+.balancesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--gray-500);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--gray-500);
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  border: 2px dashed var(--gray-300);
+}
+
+.balancesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.balanceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.balanceItem:hover {
+  border-color: var(--primary);
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+}
+
+.balanceItemInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.addressName {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.balanceItemAmount {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.125rem;
+}
+
+.quickSearchSection {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1rem;
+}
+
+.quickSearchButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .searchInput {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .balancesHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .balanceItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .quickSearchButtons {
+    flex-direction: column;
+  }
+} 
