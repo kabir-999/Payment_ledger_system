@@ -1,0 +1,30 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+target/
+*.class
+
+# Documentation
+README.md
+*.md
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
