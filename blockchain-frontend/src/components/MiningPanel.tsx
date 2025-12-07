@@ -26,7 +26,7 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
 
   useEffect(() => {
     fetchPendingTransactions();
-    
+
     // Refresh pending transactions every 5 seconds
     const interval = setInterval(fetchPendingTransactions, 5000);
     return () => clearInterval(interval);
@@ -50,9 +50,9 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
       const result = await blockchainAPI.mineBlock(minerAddress);
       const endTime = Date.now();
       const actualMiningTime = endTime - startTime;
-      
+
       setMiningTime(result.miningTime || actualMiningTime);
-      
+
       toast.success(
         `Block #${result.blockIndex} mined successfully! ` +
         `Hash: ${result.blockHash.substring(0, 16)}... ` +
@@ -62,7 +62,7 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
       // Refresh pending transactions and notify parent
       await fetchPendingTransactions();
       onBlockMined?.();
-      
+
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to mine block');
     } finally {
@@ -148,7 +148,7 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
         <h3 className="text-lg font-semibold mb-3">
           Pending Transactions ({pendingTransactions.length})
         </h3>
-        
+
         {pendingTransactions.length === 0 ? (
           <div className={styles.emptyState}>
             <p className="text-gray text-center">No pending transactions</p>
@@ -158,7 +158,7 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
           </div>
         ) : (
           <div className={styles.transactionList}>
-            {pendingTransactions.map((tx, index) => (
+            {pendingTransactions.map((tx, _index) => (
               <div key={tx.transactionId} className={styles.transactionItem}>
                 <div className={styles.transactionInfo}>
                   <span className={styles.transactionFlow}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './components/Dashboard';
 import TransactionForm from './components/TransactionForm';
@@ -18,7 +18,7 @@ function App() {
     <div className="app">
       {/* Dashboard - Always at top */}
       <Dashboard key={`dashboard-${refreshKey}`} />
-      
+
       <div className="container">
         {/* Main Content Grid */}
         <div className="grid grid-2 mt-8 mb-8">
@@ -38,7 +38,7 @@ function App() {
             A complete blockchain implementation with Java backend and React frontend.
             All data is stored and managed by the Java backend - no hardcoded values!
           </p>
-          
+
           <div className="grid grid-3">
             <div className="info-section">
               <h3 className="font-semibold text-primary mb-2">💸 Transactions</h3>
@@ -46,14 +46,14 @@ function App() {
                 Create transactions with balance validation and double-spend prevention
               </p>
             </div>
-            
+
             <div className="info-section">
               <h3 className="font-semibold text-secondary mb-2">⛏️ Mining</h3>
               <p className="text-sm text-gray">
                 Proof-of-Work mining with configurable difficulty and mining rewards
               </p>
             </div>
-            
+
             <div className="info-section">
               <h3 className="font-semibold text-warning mb-2">💰 Balances</h3>
               <p className="text-sm text-gray">

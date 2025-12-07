@@ -15,7 +15,6 @@ const SimpleLedger: React.FC = () => {
   const [receiver, setReceiver] = useState('');
   const [amount, setAmount] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [lastTx, setLastTx] = useState<Transaction | null>(null);
   const [status, setStatus] = useState<'idle' | 'pending' | 'mining' | 'confirmed' | 'error'>('idle');
   const [history, setHistory] = useState<Transaction[]>([]);
   const [currentEmail, setCurrentEmail] = useState<string | null>(authStore.getState().email);
@@ -80,7 +79,7 @@ const SimpleLedger: React.FC = () => {
         fetchAndCachePubKey(t.sender);
         fetchAndCachePubKey(t.receiver);
       });
-    } catch {}
+    } catch { }
   };
 
   const loadMyHistory = async (address: string) => {
@@ -104,7 +103,6 @@ const SimpleLedger: React.FC = () => {
 
     setIsSubmitting(true);
     setStatus('pending');
-    setLastTx(null);
 
     try {
       const addRes = await blockchainAPI.addTransaction(sender.trim(), receiver.trim(), amt);
@@ -120,8 +118,6 @@ const SimpleLedger: React.FC = () => {
 
       const mine = await blockchainAPI.mineBlock('Miner1');
       if (mine?.status === 'success') {
-        const tx = mine.block.transactions.find(t => !t.coinbase && ((t.sender === sender && t.receiver === receiver) || (t.sender === receiver && t.receiver === sender)));
-        if (tx) setLastTx(tx);
         setStatus('confirmed');
         await refreshMyBalance();
         if (currentEmail) await loadMyHistory(currentEmail);
@@ -434,7 +430,7 @@ const SimpleLedger: React.FC = () => {
             </div>
 
             {/* Transaction Stats Component */}
-            <TransactionStats 
+            <TransactionStats
               transactions={myHistory}
               currentEmail={currentEmail}
             />
@@ -476,8 +472,8 @@ const SimpleLedger: React.FC = () => {
                       fontSize: '12px'
                     }}>
                       <div style={{ color: '#d1d5db' }}>Amount</div>
-                      <div style={{ 
-                        textAlign: 'right', 
+                      <div style={{
+                        textAlign: 'right',
                         fontWeight: '700',
                         color: tx.receiver === currentEmail ? '#10b981' : '#ef4444'
                       }}>
@@ -490,8 +486,8 @@ const SimpleLedger: React.FC = () => {
                       </div>
 
                       <div style={{ color: '#d1d5db' }}>Transaction ID</div>
-                      <div style={{ 
-                        textAlign: 'right', 
+                      <div style={{
+                        textAlign: 'right',
                         fontFamily: 'monospace',
                         color: '#9ca3af',
                         fontSize: '10px',
@@ -540,9 +536,9 @@ const SimpleLedger: React.FC = () => {
                     fontSize: '12px'
                   }}>
                     <div style={{ color: '#d1d5db' }}>Sender (pubkey)</div>
-                    <div style={{ 
-                      textAlign: 'right', 
-                      wordBreak: 'break-all', 
+                    <div style={{
+                      textAlign: 'right',
+                      wordBreak: 'break-all',
                       fontFamily: 'monospace',
                       color: '#9ca3af',
                       fontSize: '10px'
@@ -551,9 +547,9 @@ const SimpleLedger: React.FC = () => {
                     </div>
 
                     <div style={{ color: '#d1d5db' }}>Receiver (pubkey)</div>
-                    <div style={{ 
-                      textAlign: 'right', 
-                      wordBreak: 'break-all', 
+                    <div style={{
+                      textAlign: 'right',
+                      wordBreak: 'break-all',
                       fontFamily: 'monospace',
                       color: '#9ca3af',
                       fontSize: '10px'
@@ -572,8 +568,8 @@ const SimpleLedger: React.FC = () => {
                     </div>
 
                     <div style={{ color: '#d1d5db' }}>Signature</div>
-                    <div style={{ 
-                      textAlign: 'right', 
+                    <div style={{
+                      textAlign: 'right',
                       fontFamily: 'monospace',
                       color: '#9ca3af',
                       fontSize: '10px'
