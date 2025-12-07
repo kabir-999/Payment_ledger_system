@@ -3,8 +3,7 @@ import type { Block, BlockchainStats, Balance, MiningResponse, ValidationRespons
 
 // Use environment variable for production, fallback to localhost for development
 const API_BASE_URL = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api/ledger`
-  : 'http://localhost:8080/api/ledger';
+  || 'http://localhost:8080/api/ledger';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
