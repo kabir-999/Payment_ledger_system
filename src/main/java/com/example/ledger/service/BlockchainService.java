@@ -21,7 +21,7 @@ public class BlockchainService {
 	private final double miningReward;
 
 	public BlockchainService(@Value("${ledger.difficulty:4}") int miningDifficulty,
-					   @Value("${ledger.miningReward:10.0}") double miningReward) {
+			@Value("${ledger.miningReward:10.0}") double miningReward) {
 		this.blockchain = new Blockchain();
 		this.pendingTransactions = new ArrayList<>();
 		this.miningDifficulty = miningDifficulty;
@@ -29,7 +29,8 @@ public class BlockchainService {
 	}
 
 	/**
-	 * Directly add a prepared transaction to the pending pool (bypass balance checks).
+	 * Directly add a prepared transaction to the pending pool (bypass balance
+	 * checks).
 	 * Used for system/register/grant/profile flows.
 	 */
 	public void addPendingDirect(Transaction tx) {
@@ -66,7 +67,8 @@ public class BlockchainService {
 	}
 
 	/**
-	 * Store/update user profile name on-chain as PROFILE transaction (SYSTEM -> email, data=name)
+	 * Store/update user profile name on-chain as PROFILE transaction (SYSTEM ->
+	 * email, data=name)
 	 */
 	public void setUserName(String email, String name) {
 		Transaction profile = new Transaction("SYSTEM", email, 0.0, "PROFILE", name);
@@ -89,7 +91,8 @@ public class BlockchainService {
 	}
 
 	/**
-	 * Store or update user's public key on-chain as PUBKEY transaction (SYSTEM -> email, data=publicKey)
+	 * Store or update user's public key on-chain as PUBKEY transaction (SYSTEM ->
+	 * email, data=publicKey)
 	 */
 	public void setUserPublicKey(String email, String publicKey) {
 		Transaction pub = new Transaction("SYSTEM", email, 0.0, "PUBKEY", publicKey);
@@ -128,13 +131,20 @@ public class BlockchainService {
 			return "Error: Cannot send to yourself";
 		}
 
-		// Check if sender has sufficient effective balance (confirmed - pending out), except for SYSTEM
+		// Check if receiver account exists (is registered), except for SYSTEM
+		if (!receiver.equals("SYSTEM") && !isUserRegistered(receiver)) {
+			return "Error: Receiver account does not exist. User must register first.";
+		}
+
+		// Check if sender has sufficient effective balance (confirmed - pending out),
+		// except for SYSTEM
 		if (!sender.equals("SYSTEM")) {
 			double confirmed = getConfirmedBalance(sender);
 			double pendingOut = getPendingOutgoing(sender);
 			double effective = confirmed - pendingOut;
 			if (effective < amount) {
-				return "Error: Insufficient balance. Confirmed: " + confirmed + ", Pending out: " + pendingOut + ", Available: " + effective;
+				return "Error: Insufficient balance. Confirmed: " + confirmed + ", Pending out: " + pendingOut
+						+ ", Available: " + effective;
 			}
 		}
 
@@ -159,14 +169,14 @@ public class BlockchainService {
 
 		// Create and "mine" the block
 		Block newBlock = new Block(
-			blockchain.getChain().size(),
-			transactionsToMine,
-			blockchain.getLatestBlock().getHash(),
-			miningDifficulty
-		);
+				blockchain.getChain().size(),
+				transactionsToMine,
+				blockchain.getLatestBlock().getHash(),
+				miningDifficulty);
 		newBlock.mineBlock(miningDifficulty);
 
-		// Append to blockchain (note: underlying model rebuilds block; PoW is educational here)
+		// Append to blockchain (note: underlying model rebuilds block; PoW is
+		// educational here)
 		blockchain.addBlock(transactionsToMine);
 
 		// Clear pending transactions
@@ -201,10 +211,9 @@ public class BlockchainService {
 	 */
 	public ChainSummary getChainSummary() {
 		return new ChainSummary(
-			blockchain.getChain().size(),
-			blockchain.isChainValid(),
-			blockchain.getLatestBlock().getHash()
-		);
+				blockchain.getChain().size(),
+				blockchain.isChainValid(),
+				blockchain.getLatestBlock().getHash());
 	}
 
 	/**

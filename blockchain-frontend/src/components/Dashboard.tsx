@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
       setStats(data);
       setError(null);
     } catch (err) {
-      setError('Failed to fetch blockchain statistics');
+      setError('Failed to fetch ledger statistics');
       console.error('Error fetching stats:', err);
     } finally {
       setLoading(false);
@@ -24,10 +24,10 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchStats();
-    
+
     // Auto-refresh every 10 seconds
     const interval = setInterval(fetchStats, 10000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -77,8 +77,8 @@ const Dashboard: React.FC = () => {
     <div className={styles.dashboard}>
       <div className="container">
         <div className={`${styles.dashboardHeader} mb-8`}>
-          <h1 className="text-3xl font-bold text-center mb-2">🔗 Blockchain Payment Ledger</h1>
-          <p className="text-gray text-center">Real-time blockchain statistics and monitoring</p>
+          <h1 className="text-3xl font-bold text-center mb-2">ChainPay</h1>
+          <p className="text-gray text-center">Immutable, Transparent, Decentralized Payment System</p>
         </div>
 
         <div className="grid grid-4 mb-8">

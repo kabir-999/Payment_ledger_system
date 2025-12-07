@@ -33,7 +33,8 @@ public class LedgerController {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(input.getBytes(StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
-            for (byte b : hashBytes) sb.append(String.format("%02x", b));
+            for (byte b : hashBytes)
+                sb.append(String.format("%02x", b));
             return sb.toString();
         } catch (Exception e) {
             throw new RuntimeException("Hash error", e);
@@ -60,8 +61,8 @@ public class LedgerController {
 
     @PostMapping("/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestParam String email,
-                                                      @RequestParam String password,
-                                                      @RequestParam(required = false) String name) {
+            @RequestParam String password,
+            @RequestParam(required = false) String name) {
         Map<String, Object> res = new HashMap<>();
         try {
             if (blockchainService.isUserRegistered(email)) {
@@ -120,7 +121,7 @@ public class LedgerController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestParam String email,
-                                                     @RequestParam String password) {
+            @RequestParam String password) {
         Map<String, Object> res = new HashMap<>();
         try {
             if (!blockchainService.isUserRegistered(email)) {
@@ -192,7 +193,8 @@ public class LedgerController {
      */
     @PostMapping("/transaction/json")
     public ResponseEntity<Map<String, String>> addTransactionJson(@RequestBody TransactionRequest request) {
-        String result = blockchainService.addTransaction(request.getSender(), request.getReceiver(), request.getAmount());
+        String result = blockchainService.addTransaction(request.getSender(), request.getReceiver(),
+                request.getAmount());
         Map<String, String> response = new HashMap<>();
 
         if (result.startsWith("Error:")) {
@@ -343,7 +345,7 @@ public class LedgerController {
     public ResponseEntity<Map<String, String>> healthCheck() {
         Map<String, String> response = new HashMap<>();
         response.put("status", "healthy");
-        response.put("service", "Blockchain Payment Ledger");
+        response.put("service", "ChainPay");
         response.put("version", "1.0.0");
         return ResponseEntity.ok(response);
     }
@@ -355,7 +357,8 @@ public class LedgerController {
         private double amount;
 
         // Constructors
-        public TransactionRequest() {}
+        public TransactionRequest() {
+        }
 
         public TransactionRequest(String sender, String receiver, double amount) {
             this.sender = sender;
@@ -364,13 +367,28 @@ public class LedgerController {
         }
 
         // Getters and setters
-        public String getSender() { return sender; }
-        public void setSender(String sender) { this.sender = sender; }
+        public String getSender() {
+            return sender;
+        }
 
-        public String getReceiver() { return receiver; }
-        public void setReceiver(String receiver) { this.receiver = receiver; }
+        public void setSender(String sender) {
+            this.sender = sender;
+        }
 
-        public double getAmount() { return amount; }
-        public void setAmount(double amount) { this.amount = amount; }
+        public String getReceiver() {
+            return receiver;
+        }
+
+        public void setReceiver(String receiver) {
+            this.receiver = receiver;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
     }
 }

@@ -1,6 +1,6 @@
-# 🔗 Blockchain Payment Ledger
+# ChainPay
 
-A **Java-based blockchain implementation** for secure, immutable financial transactions. This project demonstrates core blockchain concepts including Proof of Work mining, transaction validation, and tamper-proof record keeping.
+**ChainPay** is a Java-based payment ledger system built on blockchain principles for secure, immutable financial transactions. This project demonstrates core blockchain concepts including Proof of Work mining, transaction validation, and tamper-proof record keeping.
 
 ## 🌟 Features
 

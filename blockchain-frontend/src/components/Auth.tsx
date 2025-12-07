@@ -21,7 +21,7 @@ const Auth: React.FC = () => {
     try {
       const profile = await blockchainAPI.getUserName(email);
       if (profile?.name) toast.success(`Welcome, ${profile.name}!`);
-    } catch {}
+    } catch { }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -104,6 +104,35 @@ const Auth: React.FC = () => {
         zIndex: 0
       }}></div>
 
+      {/* Welcome Heading */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '32px',
+        position: 'relative',
+        zIndex: 10,
+        paddingLeft: '200px'
+      }}>
+        <h1 style={{
+          fontSize: '48px',
+          fontWeight: 'bold',
+          color: 'white',
+          marginBottom: '12px',
+          background: 'linear-gradient(to right, #a855f7, #3b82f6)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>
+          Welcome to ChainPay
+        </h1>
+        <p style={{
+          fontSize: '16px',
+          color: '#9ca3af',
+          maxWidth: '500px',
+          margin: '0 auto',
+          lineHeight: '1.5'
+        }}>
+          A secure, blockchain-based payment ledger system. Send and receive payments with complete transparency and immutability.
+        </p>
+      </div>
       <div style={{
         maxWidth: '448px',
         width: '100%',
@@ -242,9 +271,9 @@ const Auth: React.FC = () => {
         {generatedPub && (
           <div style={{ marginTop: '16px', padding: '16px', background: '#374151', borderRadius: '6px' }}>
             <div style={{ fontSize: '12px', color: '#d1d5db', marginBottom: '8px' }}>Your Public Key</div>
-            <div style={{ 
-              fontFamily: 'monospace', 
-              wordBreak: 'break-all', 
+            <div style={{
+              fontFamily: 'monospace',
+              wordBreak: 'break-all',
               fontSize: '12px',
               color: '#9ca3af',
               background: '#1f2937',
@@ -256,9 +285,9 @@ const Auth: React.FC = () => {
             <div style={{ fontSize: '12px', color: '#d1d5db', marginTop: '8px', marginBottom: '4px' }}>
               Your Private Key (store safely)
             </div>
-            <div style={{ 
-              fontFamily: 'monospace', 
-              wordBreak: 'break-all', 
+            <div style={{
+              fontFamily: 'monospace',
+              wordBreak: 'break-all',
               fontSize: '12px',
               color: '#9ca3af',
               background: '#1f2937',

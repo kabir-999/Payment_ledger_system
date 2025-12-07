@@ -33,9 +33,9 @@ function App() {
 
         {/* Footer Information */}
         <div className="card text-center mb-8">
-          <h2 className="text-xl font-semibold mb-4">🔗 Blockchain Payment Ledger</h2>
+          <h2 className="text-xl font-semibold mb-4">ChainPay</h2>
           <p className="text-gray mb-4">
-            A complete blockchain implementation with Java backend and React frontend.
+            A secure payment ledger system powered by ChainPay technology.
             All data is stored and managed by the Java backend - no hardcoded values!
           </p>
 

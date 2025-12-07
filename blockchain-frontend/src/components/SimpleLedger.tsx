@@ -205,7 +205,7 @@ const SimpleLedger: React.FC = () => {
             color: 'white',
             margin: 0
           }}>
-            Simple Payment
+            ChainPay
           </h1>
           {currentEmail && (
             <div style={{

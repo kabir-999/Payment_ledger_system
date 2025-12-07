@@ -86,7 +86,7 @@ const MiningPanel: React.FC<MiningPanelProps> = ({ onBlockMined }) => {
     <div className="card">
       <div className={styles.header}>
         <h2 className="text-xl font-semibold mb-2">⛏️ Mining Operations</h2>
-        <p className="text-gray text-sm mb-6">Mine blocks and manage the blockchain</p>
+        <p className="text-gray text-sm mb-6">Mine blocks and manage the ledger</p>
       </div>
 
       <div className={styles.minerSection}>
